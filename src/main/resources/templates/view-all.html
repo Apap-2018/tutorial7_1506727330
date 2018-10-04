@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View All</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>Alamat</th>
+        <th>Nomor Telpon</th>
+        <th>Detail</th>
+    </tr>
+    <tr th:each="dealer : ${listDealer}">
+        <td th:text="${dealer.alamat}"></td>
+        <td th:text="${dealer.noTelp}"></td>
+        <td><a th:href="@{/dealer/view?dealerId={id}(id=${dealer.id})}">List of Car</a></td>
+    </tr>
+</table>
+</body>
+</html>
