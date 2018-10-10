@@ -2,26 +2,53 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Add Car</title>
+    <head th:include="fragments/fragment :: title" th:remove="tag"></head>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
     <h2>Hello!</h2>
     <h3>Tambah Mobil</h3>
-    <form th:action="@{/car/add}" th:object="${car}" method="POST">
-        <input type="hidden" th:field="*{dealer}">
-        Brand: <br>
-        <input type="text" name="brand"/>
-        <br>
-        Type: <br>
-        <input type="text" name="type"/>
-        <br>
-        Price: <br>
-        <input type="number" name="price"/>
-        <br>
-        Amount: <br>
-        <input type="number" name="amount"/>
-        <br><br>
-        <button type="submit">Submit</button>
+
+    <form th:action="@{/car/add/{dealerId}(dealerId=${dealer.id})}" th:object="${dealer}" method="POST">
+        <input type="hidden" th:field="*{id}"/>
+        <table>
+            <thead>
+            <tr>
+                <th>Brand</th>
+                <th>Type</th>
+                <th>price</th>
+                <th>amount</th>
+                <th>
+                    <button type="submit" name="addRow" text="add">Tambah</button>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="car,stat : *{listCar}" >
+                <td>
+                    <input type="text" th:field="*{listCar[__${stat.index}__].brand}"/>
+                </td>
+                <td >
+                    <input type="text" th:field="*{listCar[__${stat.index}__].type}"/>
+                </td>
+                <td >
+                    <input type="number" th:field="*{listCar[__${stat.index}__].price}"/>
+                </td >
+                <td >
+                    <input type="number" th:field="*{listCar[__${stat.index}__].amount}"/>
+                </td>
+                <td >
+                    <button type="submit" name="removeRow" th:value="${stat.index}">Hapus</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <button type="submit" name="save" value="save">Save yang dipilih</button>
     </form>
+
+
+
+
 </body>
 </html>

@@ -1,7 +1,6 @@
-package com.apap.tutorial4.service;
+package com.apap.tutorial5.service;
 
-import com.apap.tutorial4.Repository.DealerDb;
-import com.apap.tutorial4.model.DealerModel;
+import com.apap.tutorial5.model.DealerModel;
 
 import java.util.List;
 import java.util.Optional;

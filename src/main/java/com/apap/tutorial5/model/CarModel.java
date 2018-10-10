@@ -1,4 +1,4 @@
-package com.apap.tutorial4.model;
+package com.apap.tutorial5.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
