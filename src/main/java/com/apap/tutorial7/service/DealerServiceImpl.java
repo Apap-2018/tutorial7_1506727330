@@ -1,8 +1,8 @@
-package com.apap.tutorial5.service;
+package com.apap.tutorial7.service;
 
 
-import com.apap.tutorial5.Repository.DealerDb;
-import com.apap.tutorial5.model.DealerModel;
+import com.apap.tutorial7.Repository.DealerDb;
+import com.apap.tutorial7.model.DealerModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,15 +22,23 @@ public class DealerServiceImpl implements DealerService{
     }
 
     @Override
-    public void addDealer(DealerModel dealer){
-        dealerDb.save(dealer);
+    public DealerModel addDealer(DealerModel dealer){
+        return dealerDb.save(dealer);
     }
 
     @Override
     public void deleteDealer(DealerModel dealer){ dealerDb.delete(dealer);}
 
     @Override
-    public List<DealerModel> getAllDealer(){
+    public List<DealerModel> viewAllDealer(){
         return dealerDb.findAll();
+    }
+
+    @Override
+    public void updateDealer(long id, DealerModel updatedDealer){
+        DealerModel dealer = dealerDb.getOne(id);
+        dealer.setNoTelp(updatedDealer.getNoTelp());
+        dealer.setAlamat(updatedDealer.getAlamat());
+        dealerDb.save(dealer);
     }
 }

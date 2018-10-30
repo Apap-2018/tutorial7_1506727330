@@ -1,11 +1,12 @@
-package com.apap.tutorial5.service;
+package com.apap.tutorial7.service;
 
-import com.apap.tutorial5.Repository.CarDb;
-import com.apap.tutorial5.model.CarModel;
+import com.apap.tutorial7.Repository.CarDb;
+import com.apap.tutorial7.model.CarModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,11 +21,15 @@ public class CarServiceImpl implements CarService{
     }
 
     @Override
-    public void addCar(CarModel car){
-        carDb.save(car);
+    public CarModel addCar(CarModel car){
+        return carDb.save(car);
     }
 
     @Override
-    public void deleteCar(Long id){ carDb.deleteById(id);}
+    public void deleteCar(CarModel car){ carDb.delete(car);}
 
+    @Override
+    public List<CarModel> viewAllCar(){
+        return  carDb.findAll();
+    }
 }
